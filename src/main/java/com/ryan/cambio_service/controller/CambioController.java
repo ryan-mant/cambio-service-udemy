@@ -2,6 +2,8 @@ package com.ryan.cambio_service.controller;
 
 import com.ryan.cambio_service.model.Cambio;
 import com.ryan.cambio_service.repository.CambioRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @RestController
+@Tag(name = "Cambio Service")
 @RequestMapping("/api/cambio")
 @CrossOrigin("*")
 @RequiredArgsConstructor
@@ -19,6 +22,7 @@ public class CambioController {
     private final CambioRepository repository;
 
     @GetMapping
+    @Operation(summary = "Get Cambio")
     public ResponseEntity<Cambio> getCambio(
             @RequestParam(name = "amount", defaultValue = "1.0") BigDecimal amount,
             @RequestParam(name = "from", defaultValue = "USD") String from,
